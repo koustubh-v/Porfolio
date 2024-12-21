@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Github, Instagram } from 'lucide-react';
+import { Github, Instagram, Mail } from 'lucide-react';
 
 const Portfolio = () => {
   const [displayedText, setDisplayedText] = useState('');
@@ -8,19 +8,14 @@ const Portfolio = () => {
 
   const fullText = "Hello, I am Koustubh, a Professional Video Editor and Web Developer";
 
-  // Define skills array inside the component
+  // Skills array
   const skills = [
-    { name: "HTML", icon: "⚛️", category: "Web Development" },
-    { name: "CSS", icon: "📘", category: "Web Development" },
-    { name: "JavaScript", icon: "📜", category: "Web Development" },
-    { name: "Node.js", icon: "🟢", category: "Web Development" },
-    { name: "React", icon: "⚛️", category: "Web Development" },
-    { name: "TypeScript", icon: "🔷", category: "Web Development" },
-    { name: "Premiere Pro", icon: "🎬", category: "Video Editing" },
-    { name: "After Effects", icon: "✨", category: "Video Editing" },
-    { name: "Photoshop", icon: "🎥", category: "Video Editing" },
-    { name: "Davinci Resolve", icon: "🎞️", category: "Video Editing" }
-
+    { name: "Premiere Pro", icon: "🎬", category: "Video Editing", color: "from-purple-600 to-pink-500" },
+    { name: "After Effects", icon: "✨", category: "Video Editing", color: "from-blue-500 to-purple-500" },
+    { name: "DaVinci Resolve", icon: "🎥", category: "Video Editing", color: "from-pink-500 to-red-500" },
+    { name: "React", icon: "⚛️", category: "Web Development", color: "from-blue-500 to-cyan-500" },
+    { name: "Node.js", icon: "🟢", category: "Web Development", color: "from-green-500 to-emerald-500" },
+    { name: "MongoDB", icon: "🍃", category: "Web Development", color: "from-emerald-500 to-green-500" }
   ];
 
   const projects = [
@@ -29,22 +24,36 @@ const Portfolio = () => {
     { title: "MLSA Hackolycapse Project", description: "HTML, CSS, JS", link: "https://github.com/koustubh-v/MLSA-Hackocalypse" }
   ];
 
+  // Added pricingPlans definition
   const pricingPlans = {
     starter: {
-      title: "Starter",
-      price: "$25",
-      features: ["Basic Video Editing", "Up to 1 minutes", "2 Revisions", "1080p Quality", "Basic Color Grading"]
+      title: "Basic Package",
+      price: "₹2000",
+      features: [
+        "Basic Video Editing", "Up to 1 minutes", "2 Revisions", "1080p Quality", "Basic Color Grading"
+      ]
     },
     basic: {
-      title: "Basic",
-      price: "$100",
-      features: ["Advanced Editing", "Up to 5 minutes", "5 Revisions", "4k Quality", "Advanced Color Grading"]
+      title: "Pro Package",
+      price: "₹8000",
+      features: [
+        "Advanced Editing", "Up to 5 minutes", "5 Revisions", "4k Quality", "Advanced Color Grading"
+      ]
     },
     custom: {
-      title: "Custom",
-      price: "10$ Per Minute",
-      features: ["Premium Editing", "Flexible Duration", "Unlimited Revisions", "4K Quality", "Advanced Color Grading"]
+      title: "Premium Package",
+      price: "Contact for Details",
+      features: [
+        "Premium Editing", "Flexible Duration", "Unlimited Revisions", "4K Quality", "Advanced Color Grading"
+      ]
     }
+  };
+
+  // Smooth scroll function
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    contactSection.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -83,64 +92,124 @@ const Portfolio = () => {
     <div className="min-h-screen bg-black text-gray-100">
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-black">
-        <div className="text-center space-y-6">
+        <div className="text-center space-y-8">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 min-h-[120px]">
             {displayedText}
             <span className="animate-blink">|</span>
           </h1>
-          <div className="animate-bounce">
-            <a href="#skills" className="text-blue-400 hover:text-blue-300">
-              Scroll Down ↓
-            </a>
-          </div>
+          <button
+            onClick={scrollToContact}
+            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-full text-lg font-semibold
+                     transform transition-all duration-500 hover:scale-110 hover:shadow-lg
+                     hover:shadow-blue-500/50 animate-pulse hover:animate-none"
+          >
+            Let's Work Together
+          </button>
         </div>
       </section>
 
       {/* Skills Section */}
       <section id="skills" className="py-16 bg-gray-900">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8 text-blue-400">My Skills</h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-8 text-blue-400 text-center">My Skills</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {skills.map((skill, index) => (
               <div
                 key={index}
-                className="group relative overflow-hidden bg-gray-800 rounded-xl p-6 transform transition-all duration-500 hover:scale-110 hover:-translate-y-2"
+                className="group relative overflow-hidden bg-gray-800 rounded-xl p-4 transform 
+                         transition-all duration-500 hover:scale-105 hover:-translate-y-1"
               >
-                {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-20 transition-all duration-500"></div>
+                {/* Animated gradient background */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${skill.color} opacity-0 
+                              group-hover:opacity-20 transition-all duration-500`}></div>
 
-                {/* Glowing border effect */}
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500 rounded-xl transition-all duration-500 group-hover:glow"></div>
-
-                {/* Content with floating animation */}
-                <div className="relative z-10 text-center transition-all duration-500 group-hover:transform group-hover:translate-y-[-5px]">
-                  <div className="text-3xl mb-3 transform transition-all duration-500 group-hover:scale-110">
+                <div className="relative z-10 flex items-center space-x-3">
+                  <div className="text-3xl group-hover:scale-110 transition-all duration-500">
                     {skill.icon}
                   </div>
-                  <div className="text-lg font-semibold group-hover:text-blue-400 transition-all duration-500">
-                    {skill.name}
-                  </div>
-                  <div className="mt-2 text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    {skill.category}
+                  <div>
+                    <div className="font-semibold group-hover:text-blue-400 transition-all duration-300">
+                      {skill.name}
+                    </div>
+                    <div className="text-sm text-gray-400 opacity-0 group-hover:opacity-100 
+                                  transition-all duration-300 absolute">
+                      {skill.category}
+                    </div>
                   </div>
                 </div>
-
-                {/* Animated corner accents */}
-                <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-transparent group-hover:border-blue-400 transition-all duration-500"></div>
-                <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-transparent group-hover:border-blue-400 transition-all duration-500"></div>
-                <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-transparent group-hover:border-blue-400 transition-all duration-500"></div>
-                <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-transparent group-hover:border-blue-400 transition-all duration-500"></div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Rest of the sections remain the same... */}
+      {/* Video Portfolio Section */}
+      <section id="video" className="py-16 bg-black">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-8 text-blue-400 text-center">Video Editing Portfolio</h2>
+          <div className="group aspect-w-16 aspect-h-9 transform transition-all duration-500 hover:scale-105">
+            <iframe
+              className="w-full h-96 rounded-lg shadow-2xl"
+              src="https://www.youtube.com/embed/6kYRUsXtS4s"
+              title="Portfolio Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+            <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 
+                          group-hover:opacity-50 transition-all duration-500"></div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-16 bg-gray-900">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-8 text-blue-400 text-center">Video Editing Pricing</h2>
+          <div className="flex justify-center mb-8">
+            <div className="flex gap-4 bg-gray-800 p-2 rounded-full">
+              {Object.keys(pricingPlans).map((plan) => (
+                <button
+                  key={plan}
+                  onClick={() => setActivePricing(plan)}
+                  className={`px-6 py-2 rounded-full transition-all duration-500 
+                            transform hover:scale-105 ${activePricing === plan
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/50'
+                      : 'bg-gray-700 hover:bg-gray-600'
+                    }`}
+                >
+                  {plan.charAt(0).toUpperCase() + plan.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+            <div className="bg-gray-800 p-8 rounded-lg w-full max-w-md transform transition-all duration-500 
+                          hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20">
+              <h3 className="text-2xl font-bold mb-4">{pricingPlans[activePricing].title}</h3>
+              <p className="text-4xl font-bold mb-6 text-blue-400">{pricingPlans[activePricing].price}</p>
+              <ul className="space-y-3">
+                {pricingPlans[activePricing].features.map((feature, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="text-green-400">✓</span> {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Projects Section */}
       <section id="projects" className="py-16 bg-black">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8 text-blue-400">Web Development Projects</h2>
+          <h2 className="text-3xl font-bold mb-8 text-blue-400 text-center">Web Development Projects</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <div
@@ -162,91 +231,51 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Video Portfolio Section */}
-      <section id="video" className="py-16 bg-gray-900">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8 text-blue-400">Video Editing Portfolio</h2>
-          <div className="aspect-w-16 aspect-h-9 transform transition-all duration-500 hover:scale-105">
-            <iframe
-              className="w-full h-96 rounded-lg shadow-2xl"
-              src="https://www.youtube.com/embed/6kYRUsXtS4s"
-              title="Portfolio Video"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="py-16 bg-black">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8 text-blue-400">Video Editing Pricing</h2>
-          <div className="flex justify-center mb-8">
-            <div className="flex gap-4 bg-gray-900 p-2 rounded-lg">
-              {Object.keys(pricingPlans).map((plan) => (
-                <button
-                  key={plan}
-                  onClick={() => setActivePricing(plan)}
-                  className={`px-6 py-2 rounded-lg transition-all duration-300 ${activePricing === plan
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-800 hover:bg-gray-700'
-                    }`}
-                >
-                  {plan.charAt(0).toUpperCase() + plan.slice(1)}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex justify-center">
-            <div className="bg-gray-900 p-8 rounded-lg w-full max-w-md transform transition-all duration-500 hover:scale-105">
-              <h3 className="text-2xl font-bold mb-4">{pricingPlans[activePricing].title}</h3>
-              <p className="text-4xl font-bold mb-6">{pricingPlans[activePricing].price}</p>
-              <ul className="space-y-3">
-                {pricingPlans[activePricing].features.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <span className="text-green-400">✓</span> {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Contact Section */}
       <section id="contact" className="py-16 bg-gray-900">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8 text-blue-400">Contact Me</h2>
+          <h2 className="text-3xl font-bold mb-8 text-blue-400 text-center">Contact Me</h2>
           <form className="max-w-lg mx-auto space-y-6">
-            <div className="transform transition-all duration-300 hover:scale-105">
-              <label className="block mb-2">Name</label>
+            <div className="group transform transition-all duration-300 hover:scale-105">
+              <label className="block mb-2 group-hover:text-blue-400 transition-colors duration-300">
+                Name
+              </label>
               <input
                 type="text"
-                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-400 focus:outline-none"
+                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
+                         focus:border-blue-400 focus:outline-none focus:ring-2 
+                         focus:ring-blue-400 focus:ring-opacity-50 transition-all duration-300"
                 required
               />
             </div>
-            <div className="transform transition-all duration-300 hover:scale-105">
-              <label className="block mb-2">Email</label>
+            <div className="group transform transition-all duration-300 hover:scale-105">
+              <label className="block mb-2 group-hover:text-blue-400 transition-colors duration-300">
+                Email
+              </label>
               <input
                 type="email"
-                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-400 focus:outline-none"
+                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
+                         focus:border-blue-400 focus:outline-none focus:ring-2 
+                         focus:ring-blue-400 focus:ring-opacity-50 transition-all duration-300"
                 required
               />
             </div>
-            <div className="transform transition-all duration-300 hover:scale-105">
-              <label className="block mb-2">Message</label>
+            <div className="group transform transition-all duration-300 hover:scale-105">
+              <label className="block mb-2 group-hover:text-blue-400 transition-colors duration-300">
+                Message
+              </label>
               <textarea
-                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-400 focus:outline-none h-32"
+                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
+                         focus:border-blue-400 focus:outline-none focus:ring-2 
+                         focus:ring-blue-400 focus:ring-opacity-50 transition-all duration-300 h-32"
                 required
               ></textarea>
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 
+                       rounded-lg transition-all duration-300 transform hover:scale-105 
+                       hover:shadow-lg hover:shadow-blue-500/50"
             >
               Send Message
             </button>
@@ -285,7 +314,6 @@ const Portfolio = () => {
         </div>
       </footer>
 
-
       <style jsx global>{`
         @keyframes blink {
           0%, 100% { opacity: 1; }
@@ -294,8 +322,12 @@ const Portfolio = () => {
         .animate-blink {
           animation: blink 1s infinite;
         }
-        .glow {
-          box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
         }
       `}</style>
     </div>
