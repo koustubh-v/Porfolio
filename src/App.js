@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Instagram, Mail } from 'lucide-react';
+import { Github, Linkedin, Instagram} from 'lucide-react';
 
 const Portfolio = () => {
   const [displayedText, setDisplayedText] = useState('');
@@ -233,86 +233,55 @@ const Portfolio = () => {
 
       {/* Contact Section */}
       <section id="contact" className="py-16 bg-gray-900">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8 text-blue-400 text-center">Contact Me</h2>
-          <form className="max-w-lg mx-auto space-y-6">
-            <div className="group transform transition-all duration-300 hover:scale-105">
-              <label className="block mb-2 group-hover:text-blue-400 transition-colors duration-300">
-                Name
-              </label>
-              <input
-                type="text"
-                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
-                         focus:border-blue-400 focus:outline-none focus:ring-2 
-                         focus:ring-blue-400 focus:ring-opacity-50 transition-all duration-300"
-                required
-              />
-            </div>
-            <div className="group transform transition-all duration-300 hover:scale-105">
-              <label className="block mb-2 group-hover:text-blue-400 transition-colors duration-300">
-                Email
-              </label>
-              <input
-                type="email"
-                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
-                         focus:border-blue-400 focus:outline-none focus:ring-2 
-                         focus:ring-blue-400 focus:ring-opacity-50 transition-all duration-300"
-                required
-              />
-            </div>
-            <div className="group transform transition-all duration-300 hover:scale-105">
-              <label className="block mb-2 group-hover:text-blue-400 transition-colors duration-300">
-                Message
-              </label>
-              <textarea
-                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 
-                         focus:border-blue-400 focus:outline-none focus:ring-2 
-                         focus:ring-blue-400 focus:ring-opacity-50 transition-all duration-300 h-32"
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 
-                       rounded-lg transition-all duration-300 transform hover:scale-105 
-                       hover:shadow-lg hover:shadow-blue-500/50"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
-      </section>
+  <div className="max-w-6xl mx-auto px-6">
+    <h2 className="text-3xl font-bold mb-8 text-blue-400 text-center">Connect with Me</h2>
+    <p className="text-lg text-white text-center mb-8">Mail Us at: <a href="mailto:codesalpha92@gmail.com" className="text-yellow-400">codesalpha92@gmail.com</a></p>
+    <div className="flex flex-wrap justify-center gap-6">
+      {[
+        {
+          name: "Github",
+          href: "https://github.com/koustubh-v",
+          logo: <Github className="w-12 h-12 text-white" />, // Replace with your actual GitHub icon component
+        },
+        {
+          name: "LinkedIn",
+          href: "https://www.linkedin.com/in/koustubh-verma/",
+          logo: <Linkedin className="w-12 h-12 text-blue-500" />, // Replace with your actual LinkedIn icon component
+        },
+        {
+          name: "Instagram",
+          href: "https://www.instagram.com/koustubh._.07/",
+          logo: <Instagram className="w-12 h-12 text-pink-500" />, // Replace with your actual Instagram icon component
+        },
+      ].map((social, index) => (
+        <a
+          key={index}
+          href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block p-4 bg-gray-800 rounded-lg transform transition-all duration-300 hover:scale-105 shadow-md hover:shadow-blue-500/50 flex items-center space-x-4"
+        >
+          <div>{social.logo}</div>
+          <span className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-300">
+            {social.name}
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+
 
       {/* Footer */}
       <footer className="bg-black py-8">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-center space-x-6">
-            <a
-              href="https://github.com/koustubh-v/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transform transition-all duration-300 hover:scale-125"
-            >
-              <Github className="w-6 h-6" />
-            </a>
-            <a
-              href="mailto:hp.koustubh@gmail.com"
-              className="text-gray-400 hover:text-white transform transition-all duration-300 hover:scale-125"
-            >
-              <Mail className="w-6 h-6" />
-            </a>
-            <a
-              href="https://www.instagram.com/koustubh._.07/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transform transition-all duration-300 hover:scale-125"
-            >
-              <Instagram className="w-6 h-6" />
-            </a>
-          </div>
-          <p className="text-center text-gray-400 mt-4">© 2024 Koustubh. All rights reserved.</p>
-        </div>
-      </footer>
+  <div className="max-w-6xl mx-auto px-6">
+    <p className="text-center text-gray-400">© 2024 Koustubh. All rights reserved.</p>
+  </div>
+</footer>
+
 
       <style jsx global>{`
         @keyframes blink {
